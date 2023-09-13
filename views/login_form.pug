@@ -1,0 +1,16 @@
+extends layout 
+
+block content 
+    .logInContainer 
+        h1=title 
+
+        form(method="POST", action="")
+            .logInFormGroup 
+                div 
+                    label(for="email") Email Address
+                    input#email(type="email" name="email" required=true value=(undefined===user? "" : user.email))  
+                div
+                    label(for="password") Password
+                    input#password(type="password" name="password", required=true)  
+            button(type="submit" class="logInBtn")
+             

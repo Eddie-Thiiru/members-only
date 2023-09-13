@@ -6,6 +6,7 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
 const logger = require("morgan");
+const bcrypt = require("bcryptjs");
 require("dotenv").config();
 
 const indexRouter = require("./routes/index");
@@ -14,6 +15,8 @@ const mongoDb = process.env.MONGODB_URL;
 mongoose.connect(mongoDb, { useUnifiedTopology: true, useNewUrlParser: true });
 const db = mongoose.connection;
 db.on("error", console.error.bind(console, "mongo connection error"));
+
+const User = require("./models/user");
 
 const app = express();
 
@@ -24,6 +27,43 @@ app.set("view engine", "pug");
 app.use(logger("dev"));
 app.use(express.json());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
+
+passport.use(
+  new LocalStrategy(async (email, password, done) => {
+    try {
+      const user = await User.findOne({ email: email });
+
+      if (!user) {
+        return done(null, false, { message: "Incorrect Username" });
+      }
+
+      const match = await bcrypt.compare(password, user.password);
+
+      if (!match) {
+        return done(null, false, { message: "Incorrect Password" });
+      }
+
+      return done(null, user);
+    } catch (error) {
+      return done(error);
+    }
+  })
+);
+
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await User.findById(id);
+
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(express.urlencoded({ extended: false }));

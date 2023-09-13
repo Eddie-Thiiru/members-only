@@ -5,7 +5,6 @@ const session = require("express-session");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const mongoose = require("mongoose");
-const asyncHandler = require("express-async-handler");
 const logger = require("morgan");
 require("dotenv").config();
 

@@ -1,0 +1,31 @@
+extends layout 
+
+block content 
+    .signUpContainer 
+        h1=title 
+
+        form(method="POST" action="" class="signUpForm")
+            .signUpFormGroup 
+                div
+                    label(for="firstName") First Name
+                    input#firstName(type="text" name="first_name" required=true value=(undefined===user? "" : user.first_name))    
+                div 
+                    label(for="secondName") Last Name 
+                    input#secondName(type="text" name="second_name" required=true value=(undefined===user? "" : user.second_name))
+            .signUpFormGroup 
+                div 
+                    label(for="email") Email Address
+                    input#email(type="email" name="email" required=true value=(undefined===user? "" : user.email))  
+            .signUpFormGroup
+                div
+                    label(for="password") Password
+                    input#password(type="password" name="password", required=true value=(undefined===user ? "" : user.password))  
+                div
+                    label(for="passwordConfirmation") Confirm Password
+                    input#passwordConfirmation(type="password" name="password_confirmation" required=true value="")  
+            button(type="submit" class="signUpBtn") Sign Up
+
+        if errors 
+            ul 
+                for error in errors 
+                    li!=error.msg

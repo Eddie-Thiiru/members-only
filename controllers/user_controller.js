@@ -69,33 +69,38 @@ exports.user_signup_post = [
     .custom((value, { req }) => {
       if (value !== req.body.password) {
         throw new Error("Confirmation password does not match");
+      } else {
+        return true;
       }
     }),
 
   asyncHandler(async (req, res, next) => {
-    bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-      const errors = validationResult(req);
+    const errors = validationResult(req);
+    console.log(req.body);
 
-      const user = new User({
-        first_name: req.body.first_name,
-        second_name: req.body.second_name,
-        email: req.body.email,
-        password: hashedPassword,
+    let user = new User({
+      first_name: req.body.first_name,
+      second_name: req.body.second_name,
+      email: req.body.email,
+      password: req.body.password,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("signup_form", {
+        title: "Sign Up",
+        user: user,
+        errors: errors.array(),
       });
 
-      if (!errors.isEmpty()) {
-        res.render("signup_form", {
-          title: "Sign Up",
-          user: user,
-          errors: errors.array(),
-        });
+      return;
+    } else {
+      bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
+        user.password = hashedPassword;
 
-        return;
-      } else {
         await user.save();
 
         res.redirect("/log-in");
-      }
-    });
+      });
+    }
   }),
 ];

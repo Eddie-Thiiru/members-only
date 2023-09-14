@@ -9,4 +9,6 @@ const MessageSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
+MessageSchema.virtual("edited_date").get(function () {});
+
 module.exports = mongoose.model("Message", MessageSchema);

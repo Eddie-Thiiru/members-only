@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    .adminFormContainer
+        h1 The Club 
+
+        p Enter a Secret Passcode to become an admin
+        
+        form(method="POST", action="")
+            .adminFormGroup 
+                label(for="passcode") 
+                input#passcode(type="password" name="passcode", required=true)  
+            button(type="submit" class="addAdminBtn") Submit
+
+
+        if errors 
+            ul 
+                for error in errors 
+                    li!=error.msg
+
+
+
+        

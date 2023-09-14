@@ -38,4 +38,10 @@ router.post("/clubhouse/join", user_controller.user_join_post);
 // GET request for user details
 router.get("/user/:username", user_controller.user_detail);
 
+// POST request for join club
+router.get("/clubhouse/admin", user_controller.user_admin_get);
+
+// GET request for user details
+router.post("/clubhouse/admin", user_controller.user_admin_post);
+
 module.exports = router;

@@ -29,47 +29,6 @@ exports.user_login_post = passport.authenticate("local", {
   failureRedirect: "/log-in",
 });
 
-exports.user_join_get = (req, res, next) => {
-  if (req.user) {
-    res.render("join_club_form");
-  } else {
-    res.redirect("/sign-up");
-  }
-};
-
-exports.user_join_post = [
-  body("passcode")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Should not be empty")
-    .custom(async (value) => {
-      const passcode = await Passcode.findOne();
-
-      if (value.toLowerCase() !== passcode.key) {
-        throw new Error("Wrong Passcode");
-      }
-    }),
-
-  asyncHandler(async (req, res, next) => {
-    const errors = validationResult(req);
-
-    const user = req.user;
-
-    if (!errors.isEmpty()) {
-      res.render("join_club_form", { errors: errors.array() });
-      return;
-    } else {
-      await User.findOneAndUpdate(
-        { _id: user._id },
-        { $set: { member: true } }
-      );
-
-      res.render(user.url);
-    }
-  }),
-];
-
 exports.user_signup_get = (req, res, next) => {
   res.render("signup_form");
 };
@@ -144,6 +103,87 @@ exports.user_signup_post = [
 
         res.redirect("/clubhouse/join");
       });
+    }
+  }),
+];
+
+exports.user_join_get = (req, res, next) => {
+  if (req.user) {
+    res.render("join_club_form");
+  } else {
+    res.redirect("/sign-up");
+  }
+};
+
+exports.user_join_post = [
+  body("passcode")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Should not be empty")
+    .custom(async (value) => {
+      const passcode = await Passcode.findOne({ club_key: { $exists: true } });
+
+      if (value !== passcode.club_key) {
+        throw new Error("Wrong Passcode");
+      }
+    }),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const user = req.user;
+
+    if (!errors.isEmpty()) {
+      res.render("join_club_form", { errors: errors.array() });
+      return;
+    } else {
+      await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: { member: true } }
+      );
+
+      res.render(user.url);
+    }
+  }),
+];
+
+exports.user_admin_get = (req, res, next) => {
+  if (req.user && req.user.member === true) {
+    res.render("admin_form");
+  } else if (req.user && req.user.member === false) {
+    res.render("join_club_form");
+  } else {
+    res.redirect("/sign-up");
+  }
+};
+
+exports.user_admin_post = [
+  body("passcode")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Should not be empty")
+    .custom(async (value) => {
+      const passcode = await Passcode.findOne({ admin_key: { $exists: true } });
+
+      if (value !== passcode.admin_key) {
+        throw new Error("Wrong Passcode");
+      }
+    }),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const user = req.user;
+
+    if (!errors.isEmpty()) {
+      res.render("admin_form", { errors: errors.array() });
+      return;
+    } else {
+      await User.findOneAndUpdate({ _id: user._id }, { $set: { admin: true } });
+
+      res.render(user.url);
     }
   }),
 ];

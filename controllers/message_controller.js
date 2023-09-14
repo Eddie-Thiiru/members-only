@@ -13,3 +13,49 @@ exports.index = asyncHandler(async (req, res, next) => {
     all_messages: allMessages,
   });
 });
+
+exports.message_new_get = (req, res, next) => {
+  res.render("new_message_form");
+};
+
+exports.message_new_post = [
+  body("title")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Title must no be empty")
+    .isLength({ max: 300 })
+    .escape()
+    .withMessage("Title must not exceed 300 characters"),
+  body("text")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Text must not be empty")
+    .isLength({ max: 40000 })
+    .escape()
+    .withMessage("Text must not exceed 40,000 characters"),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const message = new Message({
+      title: req.body.title,
+      text: req.body.text,
+      timestamp: new Date(),
+      user: req.user._id,
+    });
+
+    if (!errors.isEmpty()) {
+      res.render("new_message_form", {
+        message: message,
+        errors: errors.array(),
+      });
+      return;
+    } else {
+      await message.save();
+
+      res.redirect("/");
+    }
+  }),
+];

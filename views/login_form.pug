@@ -11,6 +11,10 @@ block content
                     input#email(type="email" name="email" required=true value=(undefined===user? "" : user.email))  
                 div
                     label(for="password") Password
-                    input#password(type="password" name="password", required=true)  
+                    input#password(type="password" name="password" required=true )  
             button(type="submit" class="logInBtn") Log In
-             
+        
+        if errors 
+            ul 
+                for error in errors 
+                    li!=error.msg

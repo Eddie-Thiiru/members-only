@@ -9,11 +9,11 @@ const message_controller = require("../controllers/message_controller");
 // GET homepage
 router.get("/", message_controller.index);
 
-// // GET request to create new message
-// router.get("/:id/post/new", message_controller.message_new_get);
+// GET request to create new message
+router.get("/post", message_controller.message_new_get);
 
-// // POST request to create new message
-// router.post("/:id/post/new", message_controller.message_new_post);
+// POST request to create new message
+router.post("/post", message_controller.message_new_post);
 
 /// USER ROUTES ///
 

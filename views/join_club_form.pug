@@ -1,0 +1,23 @@
+extends layout 
+
+block content 
+    .joinClubContainer
+        h1 The Club 
+
+        p Enter the Secret Passcode to become a full member
+        
+        form(method="POST", action="")
+            .joinClubFormGroup 
+                label(for="passcode") 
+                input#passcode(type="password" name="passcode", required=true)  
+            button(type="submit" class="logInBtn") Join
+
+
+        if errors 
+            ul 
+                for error in errors 
+                    li!=error.msg
+
+
+
+        

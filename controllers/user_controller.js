@@ -4,9 +4,12 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 
 const User = require("../models/user");
+const Passcode = require("../models/passcode");
 
 exports.user_detail = asyncHandler(async (req, res, next) => {
-  const user = await User.findById(req.params.id).exec();
+  let email = req.user.email;
+
+  const user = await User.findOne({ email: email }).exec();
 
   if (user === null) {
     const err = new Error("User not found");
@@ -18,7 +21,7 @@ exports.user_detail = asyncHandler(async (req, res, next) => {
 });
 
 exports.user_login_get = (req, res, next) => {
-  res.render("login_form", { title: "Log In" });
+  res.render("login_form");
 };
 
 exports.user_login_post = passport.authenticate("local", {
@@ -27,13 +30,48 @@ exports.user_login_post = passport.authenticate("local", {
 });
 
 exports.user_join_get = (req, res, next) => {
-  res.render("join_club_form", { title: "Join The Club" });
+  if (req.user) {
+    res.render("join_club_form");
+  } else {
+    res.redirect("/sign-up");
+  }
 };
 
-exports.user_join_post = [];
+exports.user_join_post = [
+  body("passcode")
+    .trim()
+    .isLength({ min: 1 })
+    .escape()
+    .withMessage("Should not be empty")
+    .custom(async (value) => {
+      const passcode = await Passcode.findOne();
+
+      if (value.toLowerCase() !== passcode.key) {
+        throw new Error("Wrong Passcode");
+      }
+    }),
+
+  asyncHandler(async (req, res, next) => {
+    const errors = validationResult(req);
+
+    const user = req.user;
+
+    if (!errors.isEmpty()) {
+      res.render("join_club_form", { errors: errors.array() });
+      return;
+    } else {
+      await User.findOneAndUpdate(
+        { _id: user._id },
+        { $set: { member: true } }
+      );
+
+      res.render(user.url);
+    }
+  }),
+];
 
 exports.user_signup_get = (req, res, next) => {
-  res.render("signup_form", { title: "Sign Up" });
+  res.render("signup_form");
 };
 
 exports.user_signup_post = [
@@ -82,7 +120,6 @@ exports.user_signup_post = [
 
   asyncHandler(async (req, res, next) => {
     const errors = validationResult(req);
-    console.log(req.body);
 
     let user = new User({
       first_name: req.body.first_name,

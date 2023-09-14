@@ -10,6 +10,10 @@ const UserSchema = new Schema({
   member: { type: Boolean, default: false },
 });
 
+UserSchema.virtual("fullName").get(function () {
+  return `${this.first_name} ${this.second_name}`;
+});
+
 UserSchema.virtual("username").get(function () {
   let email = this.email;
   let username = email.split("@")[0];

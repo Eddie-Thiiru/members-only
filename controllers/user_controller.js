@@ -22,9 +22,15 @@ exports.user_login_get = (req, res, next) => {
 };
 
 exports.user_login_post = passport.authenticate("local", {
-  successRedirect: "/clubhouse",
+  successRedirect: "/",
   failureRedirect: "/log-in",
 });
+
+exports.user_join_get = (req, res, next) => {
+  res.render("join_club_form", { title: "Join The Club" });
+};
+
+exports.user_join_post = [];
 
 exports.user_signup_get = (req, res, next) => {
   res.render("signup_form", { title: "Sign Up" });
@@ -99,7 +105,7 @@ exports.user_signup_post = [
 
         await user.save();
 
-        res.redirect("/log-in");
+        res.redirect("/clubhouse/join");
       });
     }
   }),

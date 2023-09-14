@@ -1,5 +1,13 @@
-extends layout
+extend layout 
 
-block content
+block content 
   h1= title
-  p Welcome to #{title}
+  
+  if user && user.member === true
+    p this is a full member
+    p #{user.fullName}
+  else if user && user.member === false
+    p this is not a full member
+    p #{user.fullName}
+  else 
+    p not a member

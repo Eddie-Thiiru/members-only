@@ -29,25 +29,31 @@ app.use(express.json());
 app.use(session({ secret: "cats", resave: false, saveUninitialized: true }));
 
 passport.use(
-  new LocalStrategy(async (email, password, done) => {
-    try {
-      const user = await User.findOne({ email: email });
+  new LocalStrategy(
+    /* LocalStrategy expects to find credentials in parameters named username and password. 
+      Adding usernameField changes the default username to email */
+    { usernameField: "email" },
 
-      if (!user) {
-        return done(null, false, { message: "Incorrect Username" });
+    async (email, password, done) => {
+      try {
+        const user = await User.findOne({ email: email });
+
+        if (!user) {
+          return done(null, false, { message: "Incorrect Username" });
+        }
+
+        const match = await bcrypt.compare(password, user.password);
+
+        if (!match) {
+          return done(null, false, { message: "Incorrect Password" });
+        }
+
+        return done(null, user);
+      } catch (error) {
+        return done(error);
       }
-
-      const match = await bcrypt.compare(password, user.password);
-
-      if (!match) {
-        return done(null, false, { message: "Incorrect Password" });
-      }
-
-      return done(null, user);
-    } catch (error) {
-      return done(error);
     }
-  })
+  )
 );
 
 passport.serializeUser((user, done) => {

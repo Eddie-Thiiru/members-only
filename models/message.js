@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const format = require("date-fns/format");
 
 const Schema = mongoose.Schema;
 
@@ -9,7 +10,9 @@ const MessageSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
-MessageSchema.virtual("edited_date").get(function () {});
+MessageSchema.virtual("edited_date").get(function () {
+  return format(new Date(this.timestamp), "do MMMM yyyy");
+});
 
 MessageSchema.virtual("url").get(function () {
   const title = this.title.toLowerCase().replace(/ /g, "_");

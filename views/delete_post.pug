@@ -1,0 +1,17 @@
+extends index 
+
+block content
+    .deleteContainer 
+        h2 Delete this post?
+
+        div     
+            h3 #{message.user.username}
+            h4 #{message.title}
+
+        div 
+            a(href="/") Cancel
+
+            form(method="POST" action="")
+                .messageDeleteFormGroup
+                    input#messageDelete(type="hidden" name="deleteMessage" required="true" value=message._id)
+                button(type="submit" class="deleteBtn") Delete

@@ -26,7 +26,7 @@ exports.user_login_get = (req, res, next) => {
 
 exports.user_login_post = passport.authenticate("local", {
   successRedirect: "/",
-  failureRedirect: "/log-in",
+  failureRedirect: "/login",
 });
 
 exports.user_signup_get = (req, res, next) => {
@@ -111,7 +111,7 @@ exports.user_join_get = (req, res, next) => {
   if (req.user) {
     res.render("join_club_form");
   } else {
-    res.redirect("/sign-up");
+    res.redirect("/signup");
   }
 };
 
@@ -154,7 +154,7 @@ exports.user_admin_get = (req, res, next) => {
   } else if (req.user && req.user.member === false) {
     res.render("join_club_form");
   } else {
-    res.redirect("/sign-up");
+    res.redirect("/signup");
   }
 };
 

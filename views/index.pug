@@ -12,9 +12,12 @@ block content
               h4 #{user.fullName}
               p #{message.timestamp}
               if user.admin === true 
-                button(type="submit" class="deleteBtn") Delete
+                a(href=message.url + "/delete") Delete
             h3 #{message.title}
             p #{message.text}
+        else 
+          div(class="emptyIndicator")
+            h3 No Posts 
           
     else if user && user.member === false
       div 
@@ -23,6 +26,10 @@ block content
             h3 #{message.title}
             p #{message.text}
             span Become a full member to see who wrote this post
+        else 
+          div(class="emptyIndicator")
+            h3 No Posts 
+         
     else 
       div 
         each message in all_messages
@@ -30,4 +37,8 @@ block content
             h3 #{message.title}
             p #{message.text}
             span Become a full member to see who wrote this post
+        else 
+          div(class="emptyIndicator")
+            h3 No Posts 
+     
 

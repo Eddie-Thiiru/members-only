@@ -15,19 +15,25 @@ router.get("/post", message_controller.message_new_get);
 // POST request to create new message
 router.post("/post", message_controller.message_new_post);
 
+// GET request to delete post
+router.get("/post/:title/:id/delete", message_controller.message_delete_get);
+
+// POST request to delete post
+router.post("/post/:title/:id/delete", message_controller.message_delete_post);
+
 /// USER ROUTES ///
 
 // GET request for new user signup
-router.get("/sign-up", user_controller.user_signup_get);
+router.get("/signup", user_controller.user_signup_get);
 
 // POST request for new user signup
-router.post("/sign-up", user_controller.user_signup_post);
+router.post("/signup", user_controller.user_signup_post);
 
 // GET request for user login
-router.get("/log-in", user_controller.user_login_get);
+router.get("/login", user_controller.user_login_get);
 
 // POST request for user login
-router.post("/log-in", user_controller.user_login_post);
+router.post("/login", user_controller.user_login_post);
 
 // GET request for join club
 router.get("/clubhouse/join", user_controller.user_join_get);
@@ -38,10 +44,10 @@ router.post("/clubhouse/join", user_controller.user_join_post);
 // GET request for user details
 router.get("/user/:username", user_controller.user_detail);
 
-// POST request for join club
+// GET request for add admin
 router.get("/clubhouse/admin", user_controller.user_admin_get);
 
-// GET request for user details
+// POST request for add admin
 router.post("/clubhouse/admin", user_controller.user_admin_post);
 
 module.exports = router;

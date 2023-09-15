@@ -11,4 +11,10 @@ const MessageSchema = new Schema({
 
 MessageSchema.virtual("edited_date").get(function () {});
 
+MessageSchema.virtual("url").get(function () {
+  const title = this.title.toLowerCase().replace(/ /g, "_");
+
+  return `post/${title}/${this._id}`;
+});
+
 module.exports = mongoose.model("Message", MessageSchema);

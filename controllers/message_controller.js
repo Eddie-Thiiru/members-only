@@ -61,3 +61,21 @@ exports.message_new_post = [
     }
   }),
 ];
+
+exports.message_delete_get = asyncHandler(async (req, res, next) => {
+  const message = await Message.findById(req.params.id).populate("user").exec();
+
+  res.render("delete_post", { message: message });
+});
+
+exports.message_delete_post = asyncHandler(async (req, res, next) => {
+  const message = await Message.findById(req.params.id).exec();
+
+  if (message === null) {
+    res.redirect("/");
+  }
+
+  await Message.findByIdAndDelete(req.params.id);
+
+  res.redirect("/");
+});

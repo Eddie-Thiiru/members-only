@@ -11,11 +11,11 @@ html
         if user && user.member === true
           nav 
             a(href="/post") New Message
-            a(href="") Log Out
+            a(href="/logout") Log Out
         else if user && user.member === false
           nav 
             a(href="/post") New Message
-            a(href="") Log Out 
+            a(href="/logout") Log Out 
         else
           nav 
             a(href="/login") Log In

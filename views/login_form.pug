@@ -14,6 +14,10 @@ block content
                     input#password(type="password" name="password" required=true )  
             button(type="submit" class="logInBtn") Log In
         
+        div 
+            p New to onlyMembers? 
+                a(href="/signup") Sign Up
+        
         if errors 
             ul 
                 for error in errors 

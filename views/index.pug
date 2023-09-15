@@ -1,9 +1,10 @@
-extend layout 
+extend layout
 
-block content 
-  h1 Messages
   
+block content 
   .homepage
+    h1 Messages
+
     if user && user.member === true
       div 
         each message in all_messages

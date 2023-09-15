@@ -5,4 +5,19 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     div(class="app")
-     block content
+      header(class="header")
+        h1 onlyMembers
+
+        if user && user.member === true
+          nav 
+            a(href="/post") New Message
+            a(href="") Log Out
+        else if user && user.member === false
+          nav 
+            a(href="/post") New Message
+            a(href="") Log Out 
+        else
+          nav 
+            a(href="/login") Log In
+            a(href="/signup") Sign Up 
+      block content

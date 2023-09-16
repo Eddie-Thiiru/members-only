@@ -1,23 +1,32 @@
 doctype html
 html
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title onlyMembers
+    link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel='stylesheet', href='/stylesheets/homepage.css')
+    link(rel='stylesheet', href='/stylesheets/login-page.css')
+    link(rel='stylesheet', href='/stylesheets/signup-page.css')
+    link(rel='stylesheet', href='/stylesheets/user-profile-page.css')
+    link(rel='stylesheet', href='/stylesheets/join-club-page.css')
+    link(rel='stylesheet', href='/stylesheets/admin-add-page.css')
+    link(rel='stylesheet', href='/stylesheets/new-post-page.css')
+    link(rel='stylesheet', href='/stylesheets/delete-page.css')
   body
     div(class="app")
       header(class="header")
         h1 onlyMembers
 
-        if user && user.member === true
+        if currentUser && (currentUser.member === true || currentUser.admin === true)
           nav 
             a(href="/post") New Message
             a(href="/logout") Log Out
-        else if user && user.member === false
+        else if currentUser && currentUser.member === false 
           nav 
             a(href="/post") New Message
             a(href="/logout") Log Out 
         else
           nav 
             a(href="/login") Log In
-            a(href="/signup") Sign Up 
-      block content
+            a(href="/signup") Sign Up
+      div(class="main") 
+        block content

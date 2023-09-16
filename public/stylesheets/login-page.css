@@ -1,0 +1,15 @@
+.logInPage {
+  width: 30%;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.logInFormGroup > div {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.logInBtn {
+  margin-top: 20px;
+}

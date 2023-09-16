@@ -1,8 +1,8 @@
 extends layout 
 
 block content 
-    .newMessageContainer 
-        h1 Create a post 
+    .newMessagePage 
+        h1 New post 
 
         form(method="POST" action="")
             .messageFormGroup 
@@ -11,7 +11,7 @@ block content
                     input#messageTitle(type="text" name="title" required=true value=(undefined===message ? "" : message.title))  
                 div
                     label(for="messageText") Text
-                    input#messageText(type="text" name="text" required=true value=(undefined===message ? "" : message.text))  
+                    textarea#messageText(rows="10" name="text" required=true value=(undefined===message ? "" : message.text))  
             button(type="submit" class="messageBtn") Submit
 
         if errors 

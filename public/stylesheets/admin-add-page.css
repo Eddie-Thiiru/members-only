@@ -1,0 +1,15 @@
+.adminPage {
+  width: 30%;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.adminFormGroup {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminModeBtn {
+  margin-top: 20px;
+}

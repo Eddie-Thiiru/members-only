@@ -1,0 +1,15 @@
+.joinClubPage {
+  width: 30%;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.joinClubFormGroup {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.joinClubBtn {
+  margin-top: 20px;
+}

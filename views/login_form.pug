@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-    .logInContainer 
+    .logInPage
         h1 Log In 
 
         form(method="POST", action="")
@@ -13,10 +13,6 @@ block content
                     label(for="password") Password
                     input#password(type="password" name="password" required=true )  
             button(type="submit" class="logInBtn") Log In
-        
-        div 
-            p New to onlyMembers? 
-                a(href="/signup") Sign Up
         
         if errors 
             ul 

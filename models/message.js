@@ -11,7 +11,7 @@ const MessageSchema = new Schema({
 });
 
 MessageSchema.virtual("edited_date").get(function () {
-  return format(new Date(this.timestamp), "do MMMM yyyy");
+  return format(new Date(this.timestamp), "do MMM yyyy");
 });
 
 MessageSchema.virtual("url").get(function () {

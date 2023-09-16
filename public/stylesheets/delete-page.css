@@ -1,0 +1,32 @@
+.deletePage {
+  width: 50%;
+}
+
+.deletePage .post {
+  width: 100%;
+  background-color: lightgray;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.adminFormGroup {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.cancelDeleteWrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+}
+
+.deletePage h2 {
+  padding: 15px 0px;
+}
+
+/* .adminModeBtn {
+  margin-top: 20px;
+} */

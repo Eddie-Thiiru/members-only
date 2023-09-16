@@ -1,7 +1,7 @@
 extends layout 
 
 block content 
-    .signUpContainer 
+    .signUpPage
         h1 Sign Up
 
         form(method="POST" action="" class="signUpForm")
@@ -24,9 +24,6 @@ block content
                     label(for="passwordConfirmation") Confirm Password
                     input#passwordConfirmation(type="password" name="password_confirmation" required=true value="")  
             button(type="submit" class="signUpBtn") Sign Up
-        div 
-            p Already a member ? 
-                a(href="/login") Log In
 
         if errors 
             ul 

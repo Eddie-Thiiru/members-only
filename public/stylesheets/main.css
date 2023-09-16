@@ -1,0 +1,70 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  font-size: 1rem;
+}
+
+.app {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-rows: 100px 1fr;
+}
+
+.header {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+button {
+  height: 45px;
+  padding: 5px 40px;
+}
+
+h1,
+form {
+  padding: 15px;
+}
+
+label {
+  padding: 5px 0px;
+}
+
+input {
+  height: 45px;
+  padding: 5px;
+}
+
+textarea {
+  padding: 5px;
+}
+
+a {
+  padding: 5px;
+  color: #00b7ff;
+}

@@ -1,16 +1,14 @@
 extends layout 
 
 block content 
-    .joinClubContainer
-        h1 The Club 
+    .joinClubPage
+        h1 Join Club 
 
-        p Enter the Secret Passcode to become a full member
-        
         form(method="POST", action="")
             .joinClubFormGroup 
-                label(for="passcode") 
-                input#passcode(type="password" name="passcode", required=true)  
-            button(type="submit" class="logInBtn") Join
+                label(for="passcode") Enter the Secret Passcode to become a full member
+                input#passcode(type="password" name="passcode" required=true)  
+            button(type="submit" class="joinClubBtn") Join
 
 
         if errors 

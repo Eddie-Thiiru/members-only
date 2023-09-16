@@ -1,0 +1,22 @@
+.signUpPage {
+  width: 30%;
+  min-width: 200px;
+  max-width: 500px;
+}
+
+.signUpFormGroup:nth-child(1),
+.signUpFormGroup:nth-child(3) {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+}
+
+.signUpFormGroup > div {
+  padding: 10px 0px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signUpBtn {
+  margin-top: 20px;
+}

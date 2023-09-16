@@ -107,11 +107,17 @@ exports.user_signup_post = [
       return;
     } else {
       bcrypt.hash(req.body.password, 10, async (err, hashedPassword) => {
-        user.password = hashedPassword;
+        try {
+          user.password = hashedPassword;
 
-        await user.save();
+          await user.save();
 
-        res.redirect("/clubhouse/join");
+          passport.authenticate("local")(req, res, function () {
+            res.redirect("/");
+          });
+        } catch (error) {
+          return next(error);
+        }
       });
     }
   }),
@@ -153,7 +159,7 @@ exports.user_join_post = [
         { $set: { member: true } }
       );
 
-      res.render(user.url);
+      res.redirect("/");
     }
   }),
 ];
@@ -193,7 +199,7 @@ exports.user_admin_post = [
     } else {
       await User.findOneAndUpdate({ _id: user._id }, { $set: { admin: true } });
 
-      res.render(user.url);
+      res.redirect("/");
     }
   }),
 ];

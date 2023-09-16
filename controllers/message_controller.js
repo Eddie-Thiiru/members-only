@@ -65,6 +65,7 @@ exports.message_new_post = [
 exports.message_delete_get = asyncHandler(async (req, res, next) => {
   const message = await Message.findById(req.params.id).populate("user").exec();
 
+  console.log(message);
   res.render("delete_post", { message: message });
 });
 

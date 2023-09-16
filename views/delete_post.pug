@@ -1,14 +1,17 @@
 extends index 
 
 block content
-    .deleteContainer 
+    .deletePage 
         h2 Delete this post?
 
-        div     
-            h3 #{message.user.username}
-            h4 #{message.title}
+        div(class="post")
+          div(class="messageHeader")
+            h4 #{message.user.username}
+            p - #{message.edited_date}
+          h3 #{message.title}
+          p #{message.text}
 
-        div 
+        div(class="cancelDeleteWrapper")
             a(href="/") Cancel
 
             form(method="POST" action="")

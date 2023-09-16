@@ -17,7 +17,11 @@ exports.index = asyncHandler(async (req, res, next) => {
 });
 
 exports.message_new_get = (req, res, next) => {
-  res.render("new_message_form");
+  if (req.user) {
+    res.render("new_message_form");
+  } else {
+    res.redirect("/login");
+  }
 };
 
 exports.message_new_post = [
@@ -63,10 +67,15 @@ exports.message_new_post = [
 ];
 
 exports.message_delete_get = asyncHandler(async (req, res, next) => {
-  const message = await Message.findById(req.params.id).populate("user").exec();
+  if (req.user && req.user.admin === true) {
+    const message = await Message.findById(req.params.id)
+      .populate("user")
+      .exec();
 
-  console.log(message);
-  res.render("delete_post", { message: message });
+    res.render("delete_post", { message: message });
+  } else {
+    res.redirect("/");
+  }
 });
 
 exports.message_delete_post = asyncHandler(async (req, res, next) => {

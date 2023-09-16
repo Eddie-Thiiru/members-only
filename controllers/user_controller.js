@@ -6,20 +6,6 @@ const passport = require("passport");
 const User = require("../models/user");
 const Passcode = require("../models/passcode");
 
-exports.user_detail = asyncHandler(async (req, res, next) => {
-  let email = req.user.email;
-
-  const user = await User.findOne({ email: email }).exec();
-
-  if (user === null) {
-    const err = new Error("User not found");
-    err.status = 404;
-    return next(err);
-  }
-
-  res.render("user_detail", { user: user });
-});
-
 exports.user_login_get = (req, res, next) => {
   res.render("login_form");
 };
@@ -124,8 +110,10 @@ exports.user_signup_post = [
 ];
 
 exports.user_join_get = (req, res, next) => {
-  if (req.user) {
+  if (req.user && req.user.member === false) {
     res.render("join_club_form");
+  } else if (req.user && req.user.member === true) {
+    res.render("/");
   } else {
     res.redirect("/signup");
   }
@@ -170,7 +158,7 @@ exports.user_admin_get = (req, res, next) => {
   } else if (req.user && req.user.member === false) {
     res.render("join_club_form");
   } else {
-    res.redirect("/signup");
+    res.redirect("/login");
   }
 };
 

@@ -44,9 +44,6 @@ router.get("/clubhouse/join", user_controller.user_join_get);
 // POST request for join club
 router.post("/clubhouse/join", user_controller.user_join_post);
 
-// GET request for user details
-router.get("/user/:username", user_controller.user_detail);
-
 // GET request for add admin
 router.get("/clubhouse/admin", user_controller.user_admin_get);
 

@@ -2,7 +2,7 @@ extends layout
 
 block content 
     .newMessagePage 
-        h1 New post 
+        h1 Compose post 
 
         form(method="POST" action="")
             .messageFormGroup 
@@ -11,8 +11,8 @@ block content
                     input#messageTitle(type="text" name="title" required=true value=(undefined===message ? "" : message.title))  
                 div
                     label(for="messageText") Text
-                    textarea#messageText(rows="10" name="text" required=true value=(undefined===message ? "" : message.text))  
-            button(type="submit" class="messageBtn") Submit
+                    textarea#messageText(rows="15" name="text" required=true value=(undefined===message ? "" : message.text))  
+            button(type="submit" class="messageBtn") Post
 
         if errors 
             ul 

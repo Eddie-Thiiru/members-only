@@ -16,11 +16,13 @@ block content
             h4 #{message.user.username}
             p - #{message.edited_date}
             if currentUser.admin === true 
-              a(href=message.url + "/delete") Delete
+              a(href=message.url + "/delete") 
+                img(src="/images/bin.svg", alt="bin icon")
           h3 #{message.title}
           p #{message.text}
       else 
         div(class="emptyIndicator")
+          img(src="/images/no-message.png", alt="No message icon")
           h3 No Posts 
           
     else if currentUser && currentUser.member === false
@@ -34,6 +36,7 @@ block content
           span Become a full member to see who wrote this post
       else 
         div(class="emptyIndicator")
+          img(src="/images/no-message.png", alt="No message icon")
           h3 No Posts 
          
     else 
@@ -44,6 +47,7 @@ block content
           span Become a full member to see who wrote this post
       else 
         div(class="emptyIndicator")
+          img(src="/images/no-message.png", alt="No message icon")
           h3 No Posts 
      
 

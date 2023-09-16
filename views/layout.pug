@@ -14,15 +14,17 @@ html
   body
     div(class="app")
       header(class="header")
-        h1 onlyMembers
+        a(href="/")  onlyMembers
 
         if currentUser && (currentUser.member === true || currentUser.admin === true)
           nav 
-            a(href="/post") New Message
+            a(href="/post")
+              img(src="/images/stylus.svg", alt="stylus icon")
             a(href="/logout") Log Out
         else if currentUser && currentUser.member === false 
           nav 
-            a(href="/post") New Message
+            a(href="/post")
+              img(src="/images/stylus.svg", alt="stylus icon")
             a(href="/logout") Log Out 
         else
           nav 

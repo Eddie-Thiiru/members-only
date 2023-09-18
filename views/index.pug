@@ -11,9 +11,10 @@ block content
           a(href="/clubhouse/admin") Become an Admin 
 
       each message in all_messages
+        - console.log(message.user)
         div(class="fullMemberMessageView" class="post")
           div(class="messageHeader")
-            if currentUser.admin === true
+            if message.user.admin === true
               div(class="adminUserIndicator")
                 img(src="/images/admin.png" alt="admin icon")
                 h4 #{message.user.username}

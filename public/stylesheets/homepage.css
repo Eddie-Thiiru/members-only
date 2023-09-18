@@ -21,7 +21,8 @@
 .post {
   width: 50%;
   border-radius: 5px;
-  background-color: lightgray;
+  background-color: #ededed;
+  box-shadow: 0px 0px 5px #989898;
   padding: 15px;
   margin-bottom: 20px;
   display: flex;
@@ -39,6 +40,7 @@ textarea {
 
 .adminUserIndicator {
   color: #469ce8;
+  padding: 5px;
   display: flex;
   align-items: center;
 }
@@ -67,12 +69,17 @@ textarea {
 }
 
 .adminUserIndicator img {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
 }
 
 .emptyIndicator img {
   height: 130px;
   width: 130px;
   padding: 10px;
+}
+
+.joinClubIndicator a:hover,
+.adminModeIndicator a:hover {
+  color: #33c5ff;
 }

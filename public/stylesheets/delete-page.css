@@ -4,7 +4,6 @@
 
 .deletePage .post {
   width: 100%;
-  background-color: lightgray;
   padding: 15px;
   display: flex;
   flex-direction: column;
@@ -30,15 +29,29 @@
   padding: 0px;
 }
 
+.deleteBtn {
+  background-color: #e03333;
+}
+
 .deletePage h2 {
   padding: 15px 0px;
 }
 
 .cancelDeleteWrapper > a {
   height: 45px;
-  border: 2px solid black;
   border-radius: 50px;
+  color: #ffffff;
+  background-color: #2b4248;
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background-color 0.2s ease-out;
+}
+
+.deleteBtn:hover {
+  background-color: #e34949;
+}
+
+.cancelDeleteWrapper > a:hover {
+  background-color: #3e5f68;
 }

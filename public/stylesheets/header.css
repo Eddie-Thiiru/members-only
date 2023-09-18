@@ -29,7 +29,16 @@ nav {
 }
 
 nav a {
-  border-radius: 5px;
-  background-color: lightgray;
-  padding: 7px 10px;
+  color: white;
+  border-radius: 50px;
+  background-color: #2b4248;
+  padding: 10px 20px;
+}
+
+nav a:hover {
+  background-color: #3e5f68;
+}
+
+.stylusLink:hover {
+  background-color: inherit;
 }

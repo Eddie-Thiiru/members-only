@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Mona Sans";
+  src: url("/fonts/MonaSans-Regular.woff2") format("woff2");
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +10,10 @@
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   font-size: 1rem;
+  font-family: "Mona Sans", Arial, sans-serif;
+  display: grid;
 }
 
 .app {
@@ -31,6 +38,7 @@ form {
 
 button {
   height: 45px;
+  font-size: 1rem;
   color: #ffffff;
   border: none;
   border-radius: 50px;
@@ -54,6 +62,9 @@ h3,
 label {
   padding: 5px 0px;
 }
+label {
+  font-weight: 600;
+}
 
 input {
   height: 45px;
@@ -61,6 +72,7 @@ input {
 
 input,
 textarea {
+  font-size: 1rem;
   border: none;
   border-radius: 10px;
   box-shadow: 0px 0px 7px #989898;

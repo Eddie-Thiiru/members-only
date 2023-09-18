@@ -8,16 +8,24 @@ block content
     if currentUser && currentUser.member === true
       if currentUser.admin === false
         div(class="adminModeIndicator")
-        a(href="/clubhouse/admin") Become an Admin 
+          a(href="/clubhouse/admin") Become an Admin 
 
       each message in all_messages
         div(class="fullMemberMessageView" class="post")
           div(class="messageHeader")
-            h4 #{message.user.username}
+            if currentUser.admin === true
+              div(class="adminUserIndicator")
+                img(src="/images/admin.png" alt="admin icon")
+                h4 #{message.user.username}
+            else  
+              h4 #{message.user.username}
+
             p - #{message.edited_date}
+
             if currentUser.admin === true 
               a(href=message.url + "/delete") 
                 img(src="/images/bin.svg", alt="bin icon")
+                
           h3 #{message.title}
           p #{message.text}
       else 

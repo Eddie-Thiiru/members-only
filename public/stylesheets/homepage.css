@@ -37,6 +37,12 @@ textarea {
   align-items: center;
 }
 
+.adminUserIndicator {
+  color: #469ce8;
+  display: flex;
+  align-items: center;
+}
+
 .messageHeader a {
   margin-left: auto;
 }
@@ -58,6 +64,11 @@ textarea {
 .post img {
   height: 25px;
   width: 25px;
+}
+
+.adminUserIndicator img {
+  height: 20px;
+  width: 20px;
 }
 
 .emptyIndicator img {

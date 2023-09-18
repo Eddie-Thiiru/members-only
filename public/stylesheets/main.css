@@ -39,6 +39,12 @@ button {
   transition: background-color 0.2s ease-out;
 }
 
+.errorMsg {
+  font-size: 14px;
+  color: #ff1a1a;
+  padding: 5px;
+}
+
 h1,
 form {
   padding: 15px;

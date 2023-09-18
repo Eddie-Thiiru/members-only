@@ -8,13 +8,11 @@ block content
             .logInFormGroup 
                 div 
                     label(for="email") Email Address
-                    input#email(type="email" name="email" required=true value=(undefined===user? "" : user.email))  
+                    input#email(type="email" name="email" required=true value=(undefined===user? "" : user.email))
+                    if message 
+                        span(class="errorMsg") #{message}  
                 div
                     label(for="password") Password
                     input#password(type="password" name="password" required=true )  
             button(type="submit" class="logInBtn") Log In
         
-        if errors 
-            ul 
-                for error in errors 
-                    li!=error.msg

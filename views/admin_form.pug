@@ -8,13 +8,12 @@ block content
             .adminFormGroup 
                 label(for="passcode") Enter a Secret Passcode to become an admin
                 input#passcode(type="password" name="passcode" required=true)  
+                if(errors)
+                    for error in errors
+                        if (error.path=='passcode')
+                            span(class="errorMsg") #{error.msg}
+                            - break 
             button(type="submit" class="adminModeBtn") Sign Up
-
-
-        if errors 
-            ul 
-                for error in errors 
-                    li!=error.msg
 
 
 

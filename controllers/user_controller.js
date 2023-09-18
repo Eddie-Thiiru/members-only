@@ -7,12 +7,15 @@ const User = require("../models/user");
 const Passcode = require("../models/passcode");
 
 exports.user_login_get = (req, res, next) => {
-  res.render("login_form");
+  const message = req.session.messages;
+
+  res.render("login_form", { message });
 };
 
 exports.user_login_post = passport.authenticate("local", {
   successRedirect: "/",
   failureRedirect: "/login",
+  failureMessage: true,
 });
 
 exports.user_logout_get = (req, res, next) => {

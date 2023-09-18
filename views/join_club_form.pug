@@ -8,13 +8,12 @@ block content
             .joinClubFormGroup 
                 label(for="passcode") Enter the Secret Passcode to become a full member
                 input#passcode(type="password" name="passcode" required=true)  
+                if(errors)
+                        for error in errors
+                            if (error.path=='passcode')
+                                span(class="errorMsg") #{error.msg}
+                                - break 
             button(type="submit" class="joinClubBtn") Join
-
-
-        if errors 
-            ul 
-                for error in errors 
-                    li!=error.msg
 
 
 

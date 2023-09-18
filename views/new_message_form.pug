@@ -9,12 +9,17 @@ block content
                 div 
                     label(for="messageTitle") Title
                     input#messageTitle(type="text" name="title" required=true value=(undefined===message ? "" : message.title))  
+                    if(errors)
+                        for error in errors
+                            if (error.path=="title")
+                                span(class="errorMsg") #{error.msg}
+                                - break 
                 div
                     label(for="messageText") Text
                     textarea#messageText(rows="15" name="text" required=true value=(undefined===message ? "" : message.text))  
+                    if(errors)
+                        for error in errors
+                            if (error.path=='text')
+                                span(class="errorMsg") #{error.msg}
+                                - break 
             button(type="submit" class="messageBtn") Post
-
-        if errors 
-            ul 
-                for error in errors 
-                    li!=error.msg

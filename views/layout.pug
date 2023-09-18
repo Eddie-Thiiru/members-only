@@ -3,10 +3,10 @@ html
   head
     title onlyMembers
     link(rel='stylesheet', href='/stylesheets/main.css')
+    link(rel="stylesheet", href="/stylesheets/header.css")
     link(rel='stylesheet', href='/stylesheets/homepage.css')
     link(rel='stylesheet', href='/stylesheets/login-page.css')
     link(rel='stylesheet', href='/stylesheets/signup-page.css')
-    link(rel='stylesheet', href='/stylesheets/user-profile-page.css')
     link(rel='stylesheet', href='/stylesheets/join-club-page.css')
     link(rel='stylesheet', href='/stylesheets/admin-add-page.css')
     link(rel='stylesheet', href='/stylesheets/new-post-page.css')
@@ -18,12 +18,12 @@ html
 
         if currentUser && (currentUser.member === true || currentUser.admin === true)
           nav 
-            a(href="/post")
+            a(href="/post" class="stylusLink")
               img(src="/images/stylus.svg", alt="stylus icon")
             a(href="/logout") Log Out
         else if currentUser && currentUser.member === false 
           nav 
-            a(href="/post")
+            a(href="/post" class="stylusLink")
               img(src="/images/stylus.svg", alt="stylus icon")
             a(href="/logout") Log Out 
         else

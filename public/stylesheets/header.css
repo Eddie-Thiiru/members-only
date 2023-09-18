@@ -1,0 +1,35 @@
+.header {
+  padding: 20px 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav {
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header > a {
+  font-size: 2rem;
+  color: black;
+  font-weight: 700;
+}
+
+.stylusLink {
+  height: 32px;
+  background-color: white;
+  padding: 0px 5px;
+}
+
+.stylusLink img {
+  height: 100%;
+}
+
+nav a {
+  border-radius: 5px;
+  background-color: lightgray;
+  padding: 7px 10px;
+}

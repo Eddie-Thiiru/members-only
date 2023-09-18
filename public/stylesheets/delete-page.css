@@ -17,16 +17,28 @@
 }
 
 .cancelDeleteWrapper {
+  padding: 15px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  justify-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  justify-content: center;
   align-items: center;
+  gap: 20px;
+}
+
+.cancelDeleteWrapper form {
+  width: 100%;
+  padding: 0px;
 }
 
 .deletePage h2 {
   padding: 15px 0px;
 }
 
-/* .adminModeBtn {
-  margin-top: 20px;
-} */
+.cancelDeleteWrapper > a {
+  height: 45px;
+  border: 2px solid black;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

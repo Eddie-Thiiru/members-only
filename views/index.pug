@@ -11,7 +11,6 @@ block content
           a(href="/clubhouse/admin") Become an Admin 
 
       each message in all_messages
-        - console.log(message.user)
         div(class="fullMemberMessageView" class="post")
           div(class="messageHeader")
             if message.user.admin === true

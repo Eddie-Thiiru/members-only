@@ -91,3 +91,24 @@ textarea {
 .messageHeader a:hover {
   background-color: #b9bdbe;
 }
+
+@media (max-width: 600px) {
+  .messageHeader {
+    display: grid;
+    grid-template-columns: 1fr max-content;
+    grid-template-rows: max-content max-content;
+  }
+
+  .adminUserIndicator,
+  .messageHeader h4 {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    padding: 0px 5px;
+  }
+
+  .messageHeader p {
+    grid-row: 2 / 3;
+    font-size: 0.75rem;
+    padding-top: 0px;
+  }
+}

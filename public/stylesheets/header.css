@@ -46,3 +46,27 @@ nav a:hover {
   background-color: #3e5f68;
   fill: white;
 }
+
+@media (max-width: 600px) {
+  .header {
+    padding: 20px 10px;
+  }
+
+  .stylusLink {
+    padding: 5px 10px;
+  }
+
+  .header > a {
+    font-size: 1.75rem;
+  }
+
+  nav a {
+    font-size: 0.75rem;
+    padding: 10px;
+  }
+
+  .stylusLink svg {
+    height: 25px;
+    width: 30px;
+  }
+}

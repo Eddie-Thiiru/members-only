@@ -21,3 +21,12 @@
   background-color: #2b4248;
   margin-top: 20px;
 }
+
+@media (max-width: 750px) {
+  .signUpFormGroup:nth-child(1),
+  .signUpFormGroup:nth-child(3) {
+    display: flex;
+    flex-direction: column;
+    gap: 0px;
+  }
+}

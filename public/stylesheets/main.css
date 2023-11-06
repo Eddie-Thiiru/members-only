@@ -95,3 +95,17 @@ textarea:active {
 button:hover {
   background-color: #3e5f68;
 }
+
+@media (max-width: 600px) {
+  button {
+    height: 40px;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  input {
+    height: 40px;
+  }
+}
